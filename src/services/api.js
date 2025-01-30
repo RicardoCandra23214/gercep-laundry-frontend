@@ -1,4 +1,4 @@
-const BASE_URL = 'https://gercep-laundry-backend-production.up.railway.app'; // Port backend yang benar
+const BASE_URL = 'https://gercep-laundry-backend.up.railway.app/'; // Port backend yang benar
 
 // Fungsi untuk login
 export const login = async (email, password) => {
