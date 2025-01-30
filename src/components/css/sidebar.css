@@ -1,0 +1,99 @@
+/* Sidebar container */
+.sidebar {
+  width: 250px; /* Lebar sidebar */
+  background-color: #f8f9fa; /* Warna background */
+  height: 100vh; /* Tinggi penuh */
+  padding: 30px; /* Padding keseluruhan */
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Sedikit bayangan */
+  position: fixed; /* Menjaga sidebar tetap di sisi kiri */
+  left: 0;
+  top: 0;
+  z-index: 100;
+}
+
+/* Title sidebar */
+.sidebar-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 30px;
+  text-align: left; /* Judul rata kiri */
+}
+
+/* Menu sidebar */
+.sidebar-menu {
+  list-style: none; /* Hilangkan bullet */
+  padding: 0; /* Hilangkan padding default */
+  margin: 0; /* Hilangkan margin default */
+}
+
+/* Link menu */
+.sidebar-menu a {
+  color: black; /* Warna teks menu */
+  text-decoration: none; /* Hilangkan garis bawah */
+  display: flex; /* Gunakan flexbox untuk ikon dan teks */
+  align-items: center; /* Rata tengah secara vertikal */
+  margin-top: 20px;
+  padding: 10px 15px; /* Padding vertikal dan horizontal */
+  text-align: left; /* Rata kiri */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Transisi animasi warna */
+}
+
+/* Hover efek */
+.sidebar-menu a:hover {
+  background-color: #e0e0e0; /* Ubah latar belakang saat hover */
+  color: blue; /* Warna teks saat hover */
+  font-weight: bold;
+  border-radius: 5px; /* Menambahkan border-radius saat hover */
+}
+
+/* Menu aktif */
+.sidebar-menu a.active {
+  color: blue; /* Warna menu aktif */
+  font-weight: bold; /* Teks lebih tebal */
+  background-color: #d1e7fd; /* Menambahkan latar belakang aktif */
+  border-radius: 5px; /* Sudut menu aktif lebih lembut */
+}
+
+/* Ikon menu */
+.sidebar-menu a svg {
+  margin-right: 10px; /* Jarak antara ikon dan teks */
+  flex-shrink: 0; /* Ikon tidak mengecil */
+  width: 20px; /* Menetapkan ukuran ikon */
+  height: 20px;
+}
+
+/* Tombol logout */
+.sidebar button{
+  margin-top: 20px;
+  background-color: red;
+  padding: 10px;
+  text-align: center;
+  width: 100%;
+  border-radius: 5px;
+  margin-bottom: 10px; /* Sedikit ruang di bawah logout */
+}
+
+
+
+.logout-btn a:hover {
+  color: #000; /* Warna saat hover */
+  transition: all 0.3s ease-in-out;
+}
+
+/* Responsif untuk layar kecil */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 200px; /* Lebar sidebar lebih kecil di layar kecil */
+    padding: 20px; /* Padding lebih kecil */
+  }
+
+  .sidebar-menu a {
+    font-size: 0.9rem; /* Ukuran font lebih kecil */
+    padding: 10px 10px; /* Padding lebih kecil */
+  }
+
+  .sidebar-title {
+    font-size: 1.2rem; /* Ukuran judul lebih kecil */
+  }
+}

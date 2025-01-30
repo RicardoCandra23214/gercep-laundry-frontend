@@ -1,0 +1,205 @@
+/* sidebar.css */
+
+/* General body reset */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Konten utama */
+.services-page-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.services-main-content {
+  margin-left: 250px; /* Memberikan ruang agar tidak tertutup sidebar */
+  flex-grow: 1; /* Konten utama akan mengisi sisa ruang */
+  background-color: #f4f4f4;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Menambahkan padding untuk halaman utama */
+.services-main-content h1 {
+  font-size: 2rem;
+  color: #333;
+}
+
+/* Pembaruan lainnya untuk tombol dan form, menyesuaikan agar tetap sesuai dengan gaya */
+button {
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.btn-add {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.btn-cancel, .btn-save {
+  background-color: #f44336;
+  color: white;
+}
+
+.btn-edit {
+  background-color: #ffa500;
+  color: white;
+  margin-right: 10px;
+}
+
+.btn-delete {
+  background-color: #e53935;
+  color: white;
+}
+
+.form-container {
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card {
+  margin-top: 20px;
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th, .table td {
+  padding: 12px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+/* Add edit and delete buttons in the last column of each row */
+.table td .btn-edit, .table td .btn-delete {
+  margin-left: 10px;
+  padding: 8px 12px;
+  border-radius: 5px;
+}
+
+.table td .btn-edit {
+  background-color: #ffa500;
+  color: white;
+}
+
+.table td .btn-delete {
+  background-color: #e53935;
+  color: white;
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 400px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content h2 {
+  margin-bottom: 20px;
+  
+}
+
+.modal-content form {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.modal-content label {
+  margin-top: 10px;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.modal-content input,
+.modal-content select {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.modal-content .btn-save {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal-content .btn-cancel {
+  background-color: #f44336;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+
+/* Style tombol close di modal */
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* Style untuk notifikasi popup */
+.notification-popup {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1rem;
+  z-index: 3000;
+  display: none; /* Sembunyikan notifikasi secara default */
+}
+
+.notification-success {
+  background-color: #4CAF50;
+}
+
+.notification-error {
+  background-color: #e53935;
+}
+
+h3{
+  text-align: left;
+  font-weight: bold;
+}

@@ -1,0 +1,193 @@
+/* Styling untuk tabel */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.table th, .table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.table th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+.table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.table tr:hover {
+  background-color: #eaeaea;
+}
+
+.table td {
+  color: #555;
+}
+
+/* Styling untuk kolom dengan panjang teks lebih panjang */
+.table .long-text {
+  max-width: 200px;
+  word-wrap: break-word; /* Mengatur agar teks panjang turun ke bawah */
+  white-space: normal; /* Mengatur agar teks tidak terpotong */
+}
+
+.table .action-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+/* Styling untuk kolom action, misalnya tombol edit dan delete */
+.table .action-buttons button {
+  padding: 5px 10px;
+  font-size: 14px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.table .action-buttons button:hover {
+  background-color: #45a049;
+}
+
+/* Styling untuk modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6); /* Darker background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modal-content {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  width: 450px;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  max-height: 80vh; /* Membatasi tinggi modal */
+  overflow-y: auto; /* Membuat scroll jika konten melebihi tinggi */
+}
+
+.modal-content h2 {
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 22px;
+}
+
+.modal-content label {
+  font-size: 14px;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.modal-content input,
+.modal-content select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+.modal-content input:focus,
+.modal-content select:focus {
+  outline: none;
+  border-color: #4CAF50;
+}
+
+.modal-content button {
+  padding: 12px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.modal-content button:hover {
+  background-color: #45a049;
+}
+
+/* Button untuk menutup modal */
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  color: #aaa;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  color: #333;
+}
+
+/* Styling tombol tambah karyawan */
+.btn-tambah-karyawan {
+  padding: 10px 20px;
+  background-color: #0077B6; /* Biru laut */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-tambah-karyawan:hover {
+  background-color: #0096c7; /* Warna lebih terang saat hover */
+}
+
+/* Styling untuk tombol Simpan */
+.tombol-simpan {
+  padding: 12px 20px;
+  background-color: #4CAF50; /* Warna hijau */
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.tombol-simpan:hover {
+  background-color: #45a049;
+}
+
+/* Styling untuk tombol Batal */
+.tombol-batal {
+  padding: 12px 20px;
+  background-color: #f44336 !important; /* Warna merah dengan !important */
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  margin-top: 10px; /* Jarak antara tombol Simpan dan Batal */
+}
+
+.tombol-batal:hover {
+  background-color: #e53935 !important; /* Warna merah dengan !important */
+}
+
+.action-buttons .btn-hapus {
+  background-color: #f44336 ;
+}

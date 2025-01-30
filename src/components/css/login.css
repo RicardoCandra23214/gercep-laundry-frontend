@@ -1,0 +1,62 @@
+/* login.css */
+body {
+   margin: 0;
+   font-family: Arial, sans-serif;
+   background-color: #f7f7f7; /* Background warna lembut */
+ }
+ 
+ .login-page {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 100vh;
+ }
+ 
+ .login-card {
+   background-color: white;
+   border-radius: 8px;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+   padding: 2rem;
+   width: 100%;
+   max-width: 400px; /* Ukuran maksimal card */
+   text-align: center;
+ }
+ 
+ .login-card h1 {
+   margin-bottom: 1.5rem;
+   color: #333;
+ }
+ 
+ .login-card form {
+   display: flex;
+   flex-direction: column; /* Susunan berbaris */
+ }
+ 
+ .login-card input {
+   margin-bottom: 1rem;
+   padding: 0.75rem;
+   border: 1px solid #ccc;
+   border-radius: 4px;
+   font-size: 1rem;
+ }
+ 
+ .login-card button {
+   padding: 0.75rem;
+   background-color: #007bff;
+   color: white;
+   border: none;
+   border-radius: 4px;
+   cursor: pointer;
+   font-size: 1rem;
+ }
+ 
+ .login-card button:hover {
+   background-color: #0056b3;
+ }
+ 
+ .login-card p {
+   margin-top: 1rem;
+   font-size: 0.9rem;
+   color: #666;
+ }
+ 

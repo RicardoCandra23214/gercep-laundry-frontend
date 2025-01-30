@@ -1,0 +1,252 @@
+/* Container utama dashboard */
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+}
+
+/* Main content area */
+.main-dashboard-content {
+  margin-left: 250px; /* Memberi jarak untuk sidebar */
+  flex: 1;
+  padding: 20px;
+  background-color: #f8f9fc;
+  height: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header dashboard */
+.dashboard-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  padding: 15px 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Judul Dashboard */
+.dashboard-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+}
+
+/* Gaya untuk Search Bar */
+.search-bar {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  margin: 0 20px;
+}
+
+.search-bar input {
+  width: 100%;
+  max-width: 400px;
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.search-bar input:focus {
+  border-color: #0bacc1;
+}
+
+/* Gaya untuk Profil */
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.profile-pic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ddd;
+}
+
+.profile-name {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333;
+}
+
+/* Gaya untuk isi dashboard */
+.dashboard-cards-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between; /* Memastikan card utama berjarak */
+  align-items: flex-start; /* Menghindari card naik-turun */
+  gap: 20px;
+  background: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  flex-wrap: nowrap; /* Mencegah pindah baris */
+  margin-top: 20px;
+}
+
+
+/* Card statistik utama */
+.dashboard-card {
+  width: 70%;
+  display: flex;
+  flex-wrap: wrap; /* Membuat card bisa membungkus ke baris baru */
+  gap: 20px;
+  background: #fff;
+  padding: 2px 3px; /* Padding lebih kecil */
+  border-radius: 8px;
+  text-align: center;
+}
+
+
+/* Card dalam dashboard-card */
+.dashboard-card .card {
+  flex: 1 1 calc(50% - 20px); /* Set 2 card per baris */
+  background: #f8f9fc;
+  padding: 10px; /* Kurangi padding untuk tinggi yang lebih pendek */
+  height: 120px; /* Atur tinggi card */
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+
+.dashboard-card h3 {
+  margin-bottom: 10px;
+  font-size: 18px;
+  color: #4e73df;
+  text-align: center;
+}
+
+.dashboard-card p {
+  font-size: 18px;
+  font-weight: bold;
+  color: #000;
+  text-align: center;
+  font-size: 20px;
+}
+
+/* Gaya untuk chart container */
+.chart-container {
+  width: 550px;
+  padding: 20px;
+  background: transparent;
+  border-radius: 8px;
+  color: #000;
+  margin-left: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Menambahkan shadow untuk kedalaman */
+}
+
+.chart-container canvas {
+  width: 100% !important; /* Memastikan chart mengisi seluruh lebar container */
+  height: 250px !important; /* Sesuaikan tinggi chart sesuai kebutuhan */
+  image-rendering: -webkit-optimize-contrast; /* Meningkatkan kualitas rendering untuk resolusi tinggi */
+  filter: brightness(1.2); /* Menambah kecerahan */
+}
+
+
+/* Gaya untuk kontainer pilihan bulan dan tahun */
+.month-selector {
+  display: flex;
+  margin-top: 20px;
+  gap: 20px;
+  align-items: center;
+  background-color: #76aedc;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Gaya untuk label */
+.month-selector label {
+  font-size: 14px;
+  font-weight: 400;
+  color: #333;
+  margin-right: 10px;
+}
+
+/* Gaya untuk select dropdown */
+.month-selector select {
+  padding: 10px 15px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #ffffff;
+  color: #333;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+.month-selector select:hover {
+  border-color: #0bacc1;
+}
+
+.month-selector select:focus {
+  border-color: #4e73df;
+}
+
+/* Gaya agar label dan select lebih teratur */
+.month-selector div {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Tabel Pesanan */
+.dashboard-table {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.dashboard-table table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-table th, .dashboard-table td {
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+.dashboard-table th {
+  background-color: #4e73df;
+  color: white;
+}
+
+.dashboard-table tr:nth-child(even) {
+  background-color: #f8f9fc;
+}
+
+.dashboard-table tr:hover {
+  background-color: #eef2ff;
+}
+
+.see-all-link {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.see-all-link:hover {
+  color: #0056b3;
+}
+
+
+

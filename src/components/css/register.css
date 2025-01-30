@@ -1,0 +1,79 @@
+/* register.css */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7; /* Warna background lembut */
+  }
+  
+  .register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f7f7f7;
+  }
+  
+  .register-container h1 {
+    margin-bottom: 1.5rem;
+    color: #333;
+    text-align: center;
+  }
+  
+  form {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px; /* Ukuran maksimal card */
+    text-align: center;
+  }
+  
+  form input,
+  form select {
+    width: 100%;
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  form button {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
+  form button:hover {
+    background-color: #0056b3;
+  }
+  
+  .register-container div {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #666;
+  }
+  
+  .register-container a {
+    text-decoration: none;
+    color: #007bff;
+  }
+  
+  .register-container a:hover {
+    color: #0056b3;
+  }
+  
+  form h1 {
+    margin-bottom: 1.5rem;
+  }
+  
+  form div {
+    margin-top: 1rem;
+  }
+  

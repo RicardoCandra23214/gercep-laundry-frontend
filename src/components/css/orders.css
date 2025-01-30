@@ -1,0 +1,277 @@
+/* Wrapper utama untuk halaman orders */
+.orders-page {
+  display: flex;
+  min-height: 100vh; /* Pastikan halaman penuh */
+}
+
+
+/* Konten utama orders berada di sebelah sidebar */
+.orders-content {
+  margin-left: 250px; /* Memberikan ruang untuk sidebar */
+  padding: 20px;
+  width: calc(100% - 250px); /* Mengurangi lebar sidebar dari konten */
+  background-color: #f8f9fa; /* Warna latar belakang konten */
+  overflow-x: auto;
+}
+
+/* Header halaman orders */
+.orders-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Tombol Tambah Pesanan */
+.orders-content button {
+  background-color: #007bff; /* Warna biru */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.orders-header button:hover {
+  background-color: #0056b3; /* Biru lebih gelap saat hover */
+}
+
+/* Tabel pesanan */
+.orders-table {
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: white; /* Warna dasar tabel */
+}
+
+.orders-table th,
+.orders-table td {
+  border: 1px solid #ddd;
+  text-align: left;
+  padding: 8px;
+}
+
+.orders-table th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+.orders-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Modal form */
+.form-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  overflow-y: auto;
+}
+
+.order-form {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  width: 400px;
+  max-height: 90%;
+  overflow-y: auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  position: relative; /* Agar tombol X bisa diposisikan di dalam form */
+}
+
+.btn-edit, .btn-delete {
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px;
+  font-size: 14px;
+}
+
+.btn-edit {
+  background-color: #ffc107;
+  color: #fff;
+  border: none;
+}
+
+.btn-edit:hover {
+  background-color: #e0a800;
+}
+
+.btn-delete {
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+}
+
+.btn-delete:hover {
+  background-color: #c82333;
+}
+
+/* Tombol X di pojok kanan atas form */
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 64px; /* Ukuran X */
+  color: red; /* Warna merah untuk X */
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  color: darkred; /* Warna X saat hover */
+}
+
+
+
+.status-pending {
+  color: orange;
+  font-weight: bold;
+}
+
+.status-selesai {
+  color: blue;
+  font-weight: bold;
+}
+
+.status-batal {
+  color: red;
+  font-weight: bold;
+}
+
+/* Membuat container untuk tombol */
+.orders-header {
+  display: flex;
+  justify-content: space-between; /* Memastikan tombol urutan dan tambah pesanan berada di sisi kiri dan kanan */
+  align-items: center;
+}
+
+/* Container untuk tombol-tombol urutan */
+.order-buttons {
+  display: flex;
+  align-items: center;
+}
+
+/* Styling tombol tambah pesanan */
+.btn-add-order {
+  margin-right: 20px; /* Memberikan jarak antara tombol tambah pesanan dan tombol urutan */
+}
+
+/* Styling untuk tombol urutan (Selesai, Pending, Batal) */
+.sort-buttons {
+  display: flex;
+  justify-content: flex-end; /* Menempatkan tombol-tombol urutan di sebelah kanan */
+}
+
+.btn-sort {
+  padding: 8px 12px;
+  margin-left: 10px; /* Memberikan jarak antar tombol urutan */
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+/* Tombol Pending - Warna Orange */
+.btn-sort.pending {
+  background-color: #FFA500; /* Warna Orange */
+}
+
+.btn-sort.pending:hover {
+  background-color: #FF8C00; /* Warna lebih gelap saat hover */
+}
+
+/* Tombol Proses - Warna Biru */
+.btn-sort.proses {
+  background-color: #007BFF; /* Warna Biru */
+}
+
+.btn-sort.proses:hover {
+  background-color: #0056b3; /* Warna lebih gelap saat hover */
+}
+
+/* Tombol Batal - Warna Merah */
+.btn-sort.batal {
+  background-color: #FF6347; /* Warna Merah */
+}
+
+.btn-sort.batal:hover {
+  background-color: #FF0000; /* Warna lebih gelap saat hover */
+}
+
+.btn-sort:focus {
+  outline: none; /* Menghilangkan border saat tombol difokuskan */
+}
+
+.btn-sort:hover {
+  background-color: #45a049; /* Warna tombol saat hover */
+}
+
+.btn-sort:focus {
+  outline: none; /* Menghilangkan border saat tombol difokuskan */
+}
+.filter-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #f4f4f4;
+  border-radius: 5px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.filter-card label {
+  margin-right: 5px;
+}
+
+.filter-card input,
+.filter-card select {
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.order-count-card {
+  background: #f8f8f8;
+  padding: 15px;
+  border-radius: 5px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.order-count-card h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.order-count-card p {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.filter-card span {
+  font-size: 16px;
+  font-weight: bold;
+  margin-right: 20px;
+}
+
+.filter-card  .order-count {
+  font-size: 16px;
+  font-weight: bold;
+  margin-right: 50px;
+}
+
+
+
+/* Menambahkan margin kanan pada teks "Jumlah Pesanan Selesai" */
+.filter-card span:first-child {
+  margin-right: 10px; /* Atur sesuai kebutuhan */
+}
