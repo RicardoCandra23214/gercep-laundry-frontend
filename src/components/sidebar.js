@@ -48,8 +48,7 @@ const Sidebar = () => {
           </NavLink>
         </li>
       </ul>
-        <button onClick={handleLogout}>Logout</button>
-      
+        <button onClick={handleLogout}>Logout</button>  
     </div>
   );
 };

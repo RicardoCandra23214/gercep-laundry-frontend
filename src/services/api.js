@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:5001"; // Port backend yang benar
+const BASE_URL = 'https://<railway-backend-url>'; // Port backend yang benar
 
 // Fungsi untuk login
 export const login = async (email, password) => {
