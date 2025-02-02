@@ -19,7 +19,7 @@ const Karyawan = () => {
   useEffect(() => {
     const fetchKaryawan = async () => {
       try {
-        const response = await fetch("http://localhost:5001/api/karyawan");
+        const response = await fetch("https://backend-gerceplaundry.up.railway.app/api/karyawan");
         if (!response.ok) {
           throw new Error("Gagal mendapatkan data dari server");
         }
@@ -73,7 +73,7 @@ const Karyawan = () => {
     }
   
     try {
-      const response = await fetch("http://localhost:5001/api/karyawan", {
+      const response = await fetch("https://backend-gerceplaundry.up.railway.app/api/karyawan", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -101,7 +101,7 @@ const Karyawan = () => {
 
   const handleUpdateKaryawan = async () => {
     try {
-      const response = await fetch(`http://localhost:5001/api/karyawan/${editKaryawan.id_karyawan}`, {
+      const response = await fetch(`https://backend-gerceplaundry.up.railway.app/api/karyawan/${editKaryawan.id_karyawan}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -132,7 +132,7 @@ const Karyawan = () => {
 
   const handleDeleteKaryawan = async (id) => {
     try {
-      const response = await fetch(`http://localhost:5001/api/karyawan/${id}`, {
+      const response = await fetch(`https://backend-gerceplaundry.up.railway.app/api/karyawan/${id}`, {
         method: "DELETE",
       });
 

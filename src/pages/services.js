@@ -23,11 +23,11 @@ const Services = () => {
   });
 
   useEffect(() => {
-    axios.get('http://localhost:5001/api/services/layanan-normal')
+    axios.get('https://backend-gerceplaundry.up.railway.app/api/services/layanan-normal')
       .then(response => setLayananNormal(response.data))
       .catch(error => console.error('Error fetching normal services:', error));
 
-    axios.get('http://localhost:5001/api/services/layanan-satuan')
+    axios.get('https://backend-gerceplaundry.up.railway.app/api/services/layanan-satuan')
       .then(response => setLayananSatuan(response.data))
       .catch(error => console.error('Error fetching unit services:', error));
   }, []);
@@ -37,8 +37,8 @@ const Services = () => {
     try {
       const apiEndpoint =
         selectedTable === 'normal'
-          ? 'http://localhost:5001/api/services/layanan-normal'
-          : 'http://localhost:5001/api/services/layanan-satuan';
+          ? 'https://backend-gerceplaundry.up.railway.app/api/services/layanan-normal'
+          : 'https://backend-gerceplaundry.up.railway.app/api/services/layanan-satuan';
   
       const response = await axios.post(apiEndpoint, formData);
       console.log('Data berhasil ditambahkan:', response.data);
@@ -79,8 +79,8 @@ const Services = () => {
     e.preventDefault();
     const apiEndpoint =
       selectedTable === 'normal'
-        ? `http://localhost:5001/api/services/layanan-normal/${editFormData.id}`
-        : `http://localhost:5001/api/services/layanan-satuan/${editFormData.id}`;
+        ? `https://backend-gerceplaundry.up.railway.app/api/services/layanan-normal/${editFormData.id}`
+        : `https://backend-gerceplaundry.up.railway.app/api/services/layanan-satuan/${editFormData.id}`;
     try {
       await axios.put(apiEndpoint, editFormData);
 
@@ -112,8 +112,8 @@ const Services = () => {
   const handleDelete = async (id, table) => {
     const apiEndpoint =
       table === 'normal'
-        ? `http://localhost:5001/api/services/layanan-normal/${id}`
-        : `http://localhost:5001/api/services/layanan-satuan/${id}`;
+        ? `https://backend-gerceplaundry.up.railway.app/api/services/layanan-normal/${id}`
+        : `https://backend-gerceplaundry.up.railway.app/api/services/layanan-satuan/${id}`;
 
     try {
       await axios.delete(apiEndpoint);

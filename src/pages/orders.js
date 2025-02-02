@@ -29,7 +29,7 @@ const Orders = () => {
     // Fetch dan filter orders
   const fetchOrders = async () => {
     try {
-      const response = await axios.get('http://localhost:5001/api/orders');
+      const response = await axios.get('https://backend-gerceplaundry.up.railway.app/api/orders');
       const filteredOrders = response.data.filter((order) => {
         const orderDate = new Date(order.tanggal_pesanan);
         return (
@@ -61,8 +61,8 @@ const Orders = () => {
   const fetchLaundryData = async () => {
     try {
       const [normalRes, satuanRes] = await Promise.all([
-        axios.get('http://localhost:5001/api/services/layanan-normal'),
-        axios.get('http://localhost:5001/api/services/layanan-satuan'),
+        axios.get('https://backend-gerceplaundry.up.railway.app/api/services/layanan-normal'),
+        axios.get('https://backend-gerceplaundry.up.railway.app/api/services/layanan-satuan'),
       ]);
       setLaundryNormal(normalRes.data);
       setLaundrySatuan(satuanRes.data);
@@ -157,10 +157,10 @@ const Orders = () => {
     try {
       if (formData.id_pesanan) {
         // Edit order
-        await axios.put(`http://localhost:5001/api/orders/${formData.id_pesanan}`, formData);
+        await axios.put(`https://backend-gerceplaundry.up.railway.app/api/orders/${formData.id_pesanan}`, formData);
       } else {
         // Add new order
-        await axios.post('http://localhost:5001/api/orders', formData);
+        await axios.post('https://backend-gerceplaundry.up.railway.app/api/orders', formData);
       }
       
       setShowForm(false);
@@ -179,7 +179,7 @@ const Orders = () => {
       });
   
       // Fetch ulang data dengan filter tanggal saat ini
-      const response = await axios.get('http://localhost:5001/api/orders');
+      const response = await axios.get('https://backend-gerceplaundry.up.railway.app/api/orders');
       const filteredOrders = response.data.filter((order) => {
         const orderDate = new Date(order.tanggal_pesanan);
         return (
@@ -218,7 +218,7 @@ const Orders = () => {
     const confirmDelete = window.confirm('Apakah Anda yakin ingin menghapus pesanan ini?');
     if (confirmDelete) {
       try {
-        await axios.delete(`http://localhost:5001/api/orders/${id}`);
+        await axios.delete(`https://backend-gerceplaundry.up.railway.app/api/orders/${id}`);
         setOrders(orders.filter(order => order.id_pesanan !== id)); // Menghapus pesanan dari tampilan
       } catch (error) {
         console.error('Error deleting order:', error);

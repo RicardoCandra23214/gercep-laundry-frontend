@@ -20,7 +20,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const response = await axios.get('http://localhost:5001/api/orders');
+        const response = await axios.get('https://backend-gerceplaundry.up.railway.app/api/orders');
         const filteredOrders = response.data.filter((order) => {
           const orderDate = new Date(order.tanggal_pesanan);
           return (
