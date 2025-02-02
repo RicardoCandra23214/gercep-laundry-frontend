@@ -131,6 +131,57 @@ button {
   text-align: left;
 }
 
+.modal form {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  max-width: 400px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.modal label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.modal input, .modal select {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.btn-save {
+  background: #4caf50;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-cancel {
+  background: #f44336;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 5px;
+}
+
+.btn-save:hover {
+  background: #45a049;
+}
+
+.btn-cancel:hover {
+  background: #d32f2f;
+}
+
 .modal-content label {
   margin-top: 10px;
   margin-bottom: 5px;

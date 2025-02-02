@@ -240,3 +240,93 @@
   font-size: 12px;
   color: red;
 }
+
+/* Media Query untuk About Us dan Form Pesanan */
+@media (max-width: 768px) {
+  /* Container 2 (About Us) */
+  .container-2 {
+    padding: 30px 15px;
+    margin-bottom: 30px; /* Menambahkan jarak bawah untuk container-2 */
+  }
+
+
+  .card-row {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card-image {
+    width: 90%;
+    height: 200px;
+    border-radius: 15px;
+    margin-bottom: 15px;
+  }
+
+  .card-about {
+    width: 90%;
+    height: auto;
+    padding: 15px;
+    text-align: left;
+  }
+
+  /* Container 3 (Form Pesanan Antar Jemput) */
+  .container-3 {
+    padding: 30px 15px;
+    margin-top: 200px; /* Menambahkan jarak atas untuk container-3 */
+  }
+
+  .card-container-3 {
+    flex-direction: column;
+    align-items: center;
+  }
+  .container-3 span {
+    font-size: 12px; /* Menyesuaikan ukuran font agar lebih kecil */
+    color: red;
+    display: block;
+    text-align: center; /* Membuat teks terpusat */
+    margin-top: 15px; /* Memberikan jarak atas */
+    width: 100%; /* Agar span mengisi lebar penuh */
+    word-wrap: break-word; /* Membungkus teks jika terlalu panjang */
+  }
+
+  .card-form {
+    width: 90%;
+    padding: 15px;
+    height: auto;
+    margin-bottom: 20px;
+  }
+
+  .card-image-contact {
+    width: 90%;
+    height: 200px;
+    margin-bottom: 20px;
+    border-radius: 15px;
+  }
+
+  .card-form label {
+    font-size: 14px;
+  }
+
+  .card-form input,
+  .card-form textarea {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .submit-btn {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .container-3 span {
+    display: block;
+    text-align: left;
+    font-size: 12px;
+    margin-top: 10px;
+  }
+
+  /* Footer */
+  .footer-bottom {
+    font-size: 12px;
+  }
+}

@@ -1,4 +1,4 @@
-const BASE_URL = 'https://gercep-laundry-backend.up.railway.app/'; // Port backend yang benar
+const BASE_URL = "http://localhost:5001"; // Port backend yang benar
 
 // Fungsi untuk login
 export const login = async (email, password) => {
@@ -6,7 +6,6 @@ export const login = async (email, password) => {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, password }),
-    credentials: "include", // Agar session tersimpan
   });
   return response.json();
 };

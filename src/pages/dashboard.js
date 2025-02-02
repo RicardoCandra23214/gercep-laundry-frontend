@@ -12,6 +12,7 @@ const Dashboard = () => {
   const [totalOrders, setTotalOrders] = useState(0);
   const [pendingOrders, setPendingOrders] = useState(0);
   const [completedOrders, setCompletedOrders] = useState(0);
+  const [batalOrders, setBatalOrders] = useState(0);
   const [totalIncome, setTotalIncome] = useState(0);
   const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth());
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
@@ -41,11 +42,13 @@ const Dashboard = () => {
     const total = filteredOrders.length;
     const pending = filteredOrders.filter(order => order.status_pesanan === 'pending').length;
     const completed = filteredOrders.filter(order => order.status_pesanan === 'selesai').length;
+    const batal = filteredOrders.filter(order => order.status_pesanan === 'antar-jemput').length;
     const completedOrdersData = filteredOrders.filter(order => order.status_pesanan === 'selesai');
     const income = completedOrdersData.reduce((acc, order) => acc + parseFloat(order.total_harga), 0);
     
     setTotalOrders(total);
     setPendingOrders(pending);
+    setBatalOrders(batal);
     setCompletedOrders(completed);
     setTotalIncome(income.toFixed(2));
   };
@@ -131,6 +134,10 @@ const Dashboard = () => {
               <div className="card">
                 <h3>Pesanan Selesai</h3>
                 <p>{completedOrders}</p>
+              </div>
+              <div className="card">
+                <h3>Pesanan perlu di antar</h3>
+                <p>{batalOrders}</p>
               </div>
               <div className="card">
                 <h3>Total Pendapatan</h3>

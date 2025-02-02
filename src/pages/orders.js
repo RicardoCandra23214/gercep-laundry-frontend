@@ -25,10 +25,6 @@ const Orders = () => {
   const [totalPendapatan, setTotalPendapatan] = useState(0);
 
 
-
-  
- 
-
   useEffect(() => {
     // Fetch dan filter orders
   const fetchOrders = async () => {
@@ -78,13 +74,39 @@ const Orders = () => {
   // Handle form data change
   const handleChange = (e) => {
     const { name, value } = e.target;
-    
-    if (name === 'detail_layanan') {
+  
+    if (name === 'jenis_layanan') {
+      // Set waktu pengerjaan default berdasarkan jenis layanan
+      let defaultWaktuPengerjaan = '';
+      if (value === 'normal') {
+        // Misalnya, waktu pengerjaan normal adalah 1 hari
+        defaultWaktuPengerjaan = '1 Hari';
+      } else if (value === 'satuan') {
+        // Misalnya, waktu pengerjaan satuan adalah 3 jam
+        defaultWaktuPengerjaan = '3 Jam';
+      }
+  
+      setFormData({
+        ...formData,
+        [name]: value,
+        waktu_pengerjaan: defaultWaktuPengerjaan, // Set waktu pengerjaan sesuai jenis layanan
+      });
+    } else if (name === 'detail_layanan') {
       // Cek apakah layanan adalah normal atau satuan
       const selectedService =
         formData.jenis_layanan === 'normal'
-          ? laundryNormal.find((item) => `${item.nama_layanan} - Rp.${parseInt(item.harga).toLocaleString('id-ID')}` === value)
-          : laundrySatuan.find((item) => `${item.nama_layanan} - Rp.${parseInt(item.harga).toLocaleString('id-ID')}` === value);
+          ? laundryNormal.find(
+              (item) =>
+                `${item.nama_layanan} - Rp.${parseInt(item.harga).toLocaleString(
+                  'id-ID'
+                )}` === value
+            )
+          : laundrySatuan.find(
+              (item) =>
+                `${item.nama_layanan} - Rp.${parseInt(item.harga).toLocaleString(
+                  'id-ID'
+                )}` === value
+            );
   
       // Update formData dengan layanan lengkap (nama + harga)
       setFormData({
@@ -94,10 +116,21 @@ const Orders = () => {
       });
     } else if (name === 'berat_pakaian') {
       // Hitung ulang total harga
-      const selectedService = formData.jenis_layanan === 'normal'
-        ? laundryNormal.find((item) => `${item.nama_layanan} - Rp.${parseInt(item.harga).toLocaleString('id-ID')}` === formData.detail_layanan)
-        : laundrySatuan.find((item) => `${item.nama_layanan} - Rp.${parseInt(item.harga).toLocaleString('id-ID')}` === formData.detail_layanan);
-      
+      const selectedService =
+        formData.jenis_layanan === 'normal'
+          ? laundryNormal.find(
+              (item) =>
+                `${item.nama_layanan} - Rp.${parseInt(item.harga).toLocaleString(
+                  'id-ID'
+                )}` === formData.detail_layanan
+            )
+          : laundrySatuan.find(
+              (item) =>
+                `${item.nama_layanan} - Rp.${parseInt(item.harga).toLocaleString(
+                  'id-ID'
+                )}` === formData.detail_layanan
+            );
+  
       setFormData({
         ...formData,
         [name]: value,
@@ -107,6 +140,7 @@ const Orders = () => {
       setFormData({ ...formData, [name]: value });
     }
   };
+  
   
   
 
@@ -120,26 +154,15 @@ const Orders = () => {
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
-    // Jika jenis layanan adalah normal atau satuan, cari detail layanan lengkap
-    const selectedService = formData.jenis_layanan === 'normal'
-      ? laundryNormal.find(item => `${item.nama_layanan} - Rp.${parseInt(item.harga).toLocaleString('id-ID')}` === formData.detail_layanan)
-      : laundrySatuan.find(item => `${item.nama_layanan} - Rp.${parseInt(item.harga).toLocaleString('id-ID')}` === formData.detail_layanan);
-  
-    if (selectedService) {
-      formData.detail_layanan = `${selectedService.nama_layanan} - Rp.${parseInt(selectedService.harga).toLocaleString('id-ID')}`;
-      // Hitung total harga saat submit
-      formData.total_harga = formData.berat_pakaian * selectedService.harga;
-    }
-  
     try {
       if (formData.id_pesanan) {
         // Edit order
         await axios.put(`http://localhost:5001/api/orders/${formData.id_pesanan}`, formData);
       } else {
-        // Add new order (jika form tidak mengedit, melainkan menambah)
+        // Add new order
         await axios.post('http://localhost:5001/api/orders', formData);
       }
+      
       setShowForm(false);
       setFormData({
         id_pesanan: '',
@@ -154,12 +177,23 @@ const Orders = () => {
         total_harga: 0,
         status_pesanan: '',
       });
+  
+      // Fetch ulang data dengan filter tanggal saat ini
       const response = await axios.get('http://localhost:5001/api/orders');
-      setOrders(response.data); // Update daftar pesanan setelah submit
+      const filteredOrders = response.data.filter((order) => {
+        const orderDate = new Date(order.tanggal_pesanan);
+        return (
+          orderDate.getDate() === filterDate.getDate() &&
+          orderDate.getMonth() === filterDate.getMonth() &&
+          orderDate.getFullYear() === filterDate.getFullYear()
+        );
+      });
+      setOrders(filteredOrders);
     } catch (error) {
       console.error('Error saving order:', error);
     }
   };
+  
   
                 
   const handleEdit = (order) => {
@@ -207,9 +241,14 @@ const Orders = () => {
   };
 
   const handleSort = (status) => {
-    sortOrdersByStatus(status);
+    const validStatuses = ["pending", "selesai", "antar-jemput"];
+    if (validStatuses.includes(status)) {
+      sortOrdersByStatus(status);
+    } else {
+      console.warn("Status tidak valid");
+    }
   };
-
+  
 
   
 
@@ -246,7 +285,7 @@ const Orders = () => {
           <div className="sort-buttons">
           <button onClick={() => handleSort('selesai')} className="btn-sort proses">Selesai</button>
           <button onClick={() => handleSort('pending')} className="btn-sort pending">Pending</button>
-          <button onClick={() => handleSort('batal')} className="btn-sort batal">Batal</button>
+          <button onClick={() => handleSort('antar-jemput')} className="btn-sort batal">Antar-Jemput</button>
           </div>
 
           
@@ -346,7 +385,7 @@ const Orders = () => {
                 required
               />
 
-              <label htmlFor="berat_pakaian">Berat Pakaian (kg):</label>
+              <label htmlFor="berat_pakaian">jumlah (kg / pcs):</label>
               <input
                 type="number"
                 id="berat_pakaian"
@@ -367,7 +406,7 @@ const Orders = () => {
                 <option value="">Pilih Status</option>
                 <option value="pending">Pending</option>
                 <option value="selesai">Selesai</option>
-                <option value="batal">Batal</option>
+                <option value="antar-jemput">Antar-Jemput</option>
               </select>
 
               <div>
@@ -418,11 +457,24 @@ const Orders = () => {
                 </td>
                 <td>{order.waktu_pengerjaan}</td>
                 <td>{formatTanggal(order.tanggal_pesanan)}</td>
-                <td>{order.berat_pakaian} Kg</td>
-                <td>Rp.{parseInt(order.total_harga).toLocaleString('id-ID')}</td>
-                <td className={`status ${order.status_pesanan === 'pending' ? 'status-pending' : order.status_pesanan === 'selesai' ? 'status-selesai' : 'status-batal'}`}>
-                  {order.status_pesanan}
+                <td>
+                  {order.jenis_layanan === "normal"
+                    ? `${order.berat_pakaian} pcs/satuan`
+                    : `${order.berat_pakaian} kg`}
                 </td>
+                <td>Rp.{parseInt(order.total_harga).toLocaleString('id-ID')}</td>
+                <td
+                className={`status ${
+                  order.status_pesanan === 'pending'
+                    ? 'status-pending'
+                    : order.status_pesanan === 'selesai'
+                    ? 'status-selesai'
+                    : 'status-batal'
+                }`}
+              >
+                {order.status_pesanan}
+              </td>
+
                 <td>
                   <button onClick={() => handleEdit(order)} className="btn-edit">Edit</button>
                   <button onClick={() => handleDelete(order.id_pesanan)} className="btn-delete">Hapus</button>

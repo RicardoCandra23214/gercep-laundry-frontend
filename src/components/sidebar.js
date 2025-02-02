@@ -8,7 +8,7 @@ const Sidebar = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("isLoggedIn"); // Hapus status login
-    navigate("/login"); // Arahkan ke halaman login
+    navigate("/"); // Arahkan ke halaman login
   };
 
   return (

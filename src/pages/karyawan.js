@@ -64,6 +64,14 @@ const Karyawan = () => {
   };
 
   const handleAddKaryawan = async () => {
+    const { nama, alamat, no_whatsapp, tanggal_masuk, gaji } = newKaryawan;
+  
+    // Validasi input
+    if (!nama || !alamat || !no_whatsapp || !tanggal_masuk || !gaji) {
+      alert("Ada data yang belum diisi");
+      return;
+    }
+  
     try {
       const response = await fetch("http://localhost:5001/api/karyawan", {
         method: "POST",
@@ -72,11 +80,11 @@ const Karyawan = () => {
         },
         body: JSON.stringify(newKaryawan),
       });
-
+  
       if (!response.ok) {
         throw new Error("Gagal menambah karyawan");
       }
-
+  
       const newData = await response.json();
       setDataKaryawan([...dataKaryawan, newData]);
       setIsModalOpen(false);
@@ -210,7 +218,17 @@ const Karyawan = () => {
               </label>
               <label>
                 No WhatsApp:
-                <input type="text" name="no_whatsapp" value={newKaryawan.no_whatsapp} onChange={handleInputChange} />
+                <input
+                  type="tel"
+                  name="no_whatsapp"
+                  value={newKaryawan.no_whatsapp}
+                  onChange={(e) => {
+                    const value = e.target.value.replace(/\D/g, ""); // Menghapus semua karakter non-angka
+                    setNewKaryawan({ ...newKaryawan, no_whatsapp: value });
+                  }}
+                  pattern="[0-9]*"
+                  inputMode="numeric"
+                />
               </label>
               <label>
                 Tanggal Masuk:
@@ -244,9 +262,19 @@ const Karyawan = () => {
                 <input type="text" name="alamat" value={editKaryawan.alamat} onChange={handleInputChange} />
               </label>
               <label>
-                No WhatsApp:
-                <input type="text" name="no_whatsapp" value={editKaryawan.no_whatsapp} onChange={handleInputChange} />
-              </label>
+                  No WhatsApp:
+                  <input
+                    type="tel"
+                    name="no_whatsapp"
+                    value={editKaryawan.no_whatsapp}
+                    onChange={(e) => {
+                      const value = e.target.value.replace(/\D/g, ""); // Menghapus semua karakter non-angka
+                      setEditKaryawan({ ...editKaryawan, no_whatsapp: value });
+                    }}
+                    pattern="[0-9]*"
+                    inputMode="numeric"
+                  />
+                </label>
               <label>
                 Tanggal Masuk:
                 <input type="date" name="tanggal_masuk" value={editKaryawan.tanggal_masuk} onChange={handleInputChange} />
