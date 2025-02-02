@@ -8,12 +8,14 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
+    console.log({ email, password });
     e.preventDefault();
     try {
       const response = await fetch("https://backend-gerceplaundry.up.railway.app/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ email, password }), // Kirim data login
       });
       const data = await response.json();
 
