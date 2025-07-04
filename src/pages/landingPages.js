@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../components/css/landingPages.css"; // Import CSS
-import emailjs from "emailjs-com"; // Tambahkan ini
+import "../components/css/landingPages.css";
+import emailjs from "emailjs-com";
 
 const LandingPage = () => {
   const navigate = useNavigate();
@@ -9,9 +9,8 @@ const LandingPage = () => {
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [description, setDescription] = useState("");
-  const [isReviewed, setIsReviewed] = useState(false); // State untuk checkbox
+  const [isReviewed, setIsReviewed] = useState(false);
 
-  // Fungsi untuk handle submit pesanan WA
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -33,7 +32,6 @@ const LandingPage = () => {
     setDescription("");
   };
 
-  // Fungsi ketika checkbox dicentang
   const handleCheckboxChange = (e) => {
     const checked = e.target.checked;
     setIsReviewed(checked);
@@ -41,20 +39,19 @@ const LandingPage = () => {
     if (checked) {
       emailjs
         .send(
-          "YOUR_SERVICE_ID", // Ganti dengan data dari EmailJS
-          "YOUR_TEMPLATE_ID",
+          "service_jn640ao",
+          "template_wfqj14o",
           {
             message: "Website Gercep Laundry sudah direview oleh dosen.",
-            to_name: "Ricardo",
           },
-          "YOUR_PUBLIC_KEY"
+          "A2R7VdMHewMxALxYU"
         )
         .then(() => {
-          alert("Notifikasi email terkirim!");
+          alert("✅ Email berhasil dikirim ke Ricardo!");
         })
         .catch((error) => {
-          console.error("Gagal mengirim email:", error);
-          alert("Gagal mengirim email.");
+          console.error("❌ Gagal mengirim email:", error);
+          alert("❌ Email gagal dikirim. Coba cek koneksi atau konfigurasi.");
         });
     }
   };
@@ -74,7 +71,6 @@ const LandingPage = () => {
         </div>
       </div>
 
-      {/* Container 2 - About Us */}
       <div className="container-2" id="about">
         <h2 className="about-title">About Us</h2>
         <div className="card-container-2">
@@ -111,12 +107,10 @@ const LandingPage = () => {
         </div>
       </div>
 
-      {/* Container 3 - Buat Pesanan */}
       <div className="container-3" id="contact">
         <h2 className="contact-title">Buat Pesanan antar jemput</h2>
         <div className="card-container-3">
           <div className="card-row">
-            {/* Card 1 - Form Pesanan */}
             <div className="card-form">
               <form onSubmit={handleSubmit}>
                 <label htmlFor="nama">Nama:</label>
@@ -148,25 +142,23 @@ const LandingPage = () => {
                   placeholder="cth : cuci kering 1 hari (silahkan lihat gambar di samping untuk melihat layanan)"
                 ></textarea>
 
-                <button type="submit" className="submit-btn" target="_blank">
+                <button type="submit" className="submit-btn">
                   Kirim Pesanan
                 </button>
 
-                {/* Checkbox untuk review dosen */}
                 <div style={{ marginTop: "1rem" }}>
                   <label>
                     <input
                       type="checkbox"
                       checked={isReviewed}
                       onChange={handleCheckboxChange}
-                    />
+                    />{" "}
                     Website ini sudah direview oleh dosen
                   </label>
                 </div>
               </form>
             </div>
 
-            {/* Card 2 - Foto */}
             <div className="card-image-contact"></div>
           </div>
         </div>
