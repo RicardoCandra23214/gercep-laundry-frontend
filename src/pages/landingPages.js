@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../components/css/landingPages.css"; // Import CSS
+import emailjs from "emailjs-com"; // Tambahkan ini
 
 const LandingPage = () => {
   const navigate = useNavigate();
@@ -8,33 +9,56 @@ const LandingPage = () => {
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [description, setDescription] = useState("");
+  const [isReviewed, setIsReviewed] = useState(false); // State untuk checkbox
 
-  // Fungsi untuk handle submit
+  // Fungsi untuk handle submit pesanan WA
   const handleSubmit = (e) => {
-    e.preventDefault(); // Mencegah form melakukan refresh
-  
-    // Menyusun pesan WhatsApp dengan teks tambahan
-    const message = `Hallo Gercep Laundry, saya ingin memesan layanan laundrynya dong. berikut data pesanan saya yaa:%0A%0A` +
-                    `Nama: ${name}%0A` +
-                    `Nomor WA: ${phone}%0A` +
-                    `Alamat: ${address}%0A` +
-                    `Deskripsi Pesanan: ${description}%0A%0A` +
-                    `sekian dan terima kasih!!`;
-  
-    // Ganti dengan nomor WA yang valid, format internasional
-    const waNumber = "6283151727739"; // Nomor WhatsApp tujuan
-  
-    // Mengarahkan ke URL WhatsApp dengan pesan
+    e.preventDefault();
+
+    const message =
+      `Hallo Gercep Laundry, saya ingin memesan layanan laundrynya dong. berikut data pesanan saya yaa:%0A%0A` +
+      `Nama: ${name}%0A` +
+      `Nomor WA: ${phone}%0A` +
+      `Alamat: ${address}%0A` +
+      `Deskripsi Pesanan: ${description}%0A%0A` +
+      `sekian dan terima kasih!!`;
+
+    const waNumber = "6283151727739";
     const url = `https://wa.me/${waNumber}?text=${message}`;
     window.location.href = url;
-  
-    // Mereset form setelah submit
+
     setName("");
     setPhone("");
     setAddress("");
     setDescription("");
   };
-  
+
+  // Fungsi ketika checkbox dicentang
+  const handleCheckboxChange = (e) => {
+    const checked = e.target.checked;
+    setIsReviewed(checked);
+
+    if (checked) {
+      emailjs
+        .send(
+          "YOUR_SERVICE_ID", // Ganti dengan data dari EmailJS
+          "YOUR_TEMPLATE_ID",
+          {
+            message: "Website Gercep Laundry sudah direview oleh dosen.",
+            to_name: "Ricardo",
+          },
+          "YOUR_PUBLIC_KEY"
+        )
+        .then(() => {
+          alert("Notifikasi email terkirim!");
+        })
+        .catch((error) => {
+          console.error("Gagal mengirim email:", error);
+          alert("Gagal mengirim email.");
+        });
+    }
+  };
+
   return (
     <div className="landing-page-1">
       <div className="container-1">
@@ -42,7 +66,9 @@ const LandingPage = () => {
           Login
         </button>
         <div className="hero-content">
-          <h1>Welcome to <span>G</span>ercep <span>L</span>aundry</h1>
+          <h1>
+            Welcome to <span>G</span>ercep <span>L</span>aundry
+          </h1>
           <p>Atasi masalah pakaian kotor anda</p>
           <p>dengan kami disini!</p>
         </div>
@@ -125,6 +151,18 @@ const LandingPage = () => {
                 <button type="submit" className="submit-btn" target="_blank">
                   Kirim Pesanan
                 </button>
+
+                {/* Checkbox untuk review dosen */}
+                <div style={{ marginTop: "1rem" }}>
+                  <label>
+                    <input
+                      type="checkbox"
+                      checked={isReviewed}
+                      onChange={handleCheckboxChange}
+                    />
+                    Website ini sudah direview oleh dosen
+                  </label>
+                </div>
               </form>
             </div>
 
@@ -132,7 +170,9 @@ const LandingPage = () => {
             <div className="card-image-contact"></div>
           </div>
         </div>
-        <span>catatan : berat minimal 3Kg jika kurang akan di bulatkan menjadi 3Kg</span>
+        <span>
+          catatan : berat minimal 3Kg jika kurang akan di bulatkan menjadi 3Kg
+        </span>
       </div>
 
       <div className="footer-bottom">
