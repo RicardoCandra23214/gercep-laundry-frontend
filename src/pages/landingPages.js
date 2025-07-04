@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../components/css/landingPages.css";
-import emailjs from "emailjs-com";
+import emailjs from "emailjs-com"; // Tambahan
+import "../components/css/landingPages.css"; // Import CSS
 
 const LandingPage = () => {
   const navigate = useNavigate();
@@ -9,18 +9,18 @@ const LandingPage = () => {
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [description, setDescription] = useState("");
-  const [isReviewed, setIsReviewed] = useState(false);
+  const [isReviewed, setIsReviewed] = useState(false); // Tambahan state checkbox
 
+  // Fungsi untuk kirim pesan via WhatsApp
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const message =
-      `Hallo Gercep Laundry, saya ingin memesan layanan laundrynya dong. berikut data pesanan saya yaa:%0A%0A` +
-      `Nama: ${name}%0A` +
-      `Nomor WA: ${phone}%0A` +
-      `Alamat: ${address}%0A` +
-      `Deskripsi Pesanan: ${description}%0A%0A` +
-      `sekian dan terima kasih!!`;
+    const message = `Hallo Gercep Laundry, saya ingin memesan layanan laundrynya dong. berikut data pesanan saya yaa:%0A%0A` +
+                    `Nama: ${name}%0A` +
+                    `Nomor WA: ${phone}%0A` +
+                    `Alamat: ${address}%0A` +
+                    `Deskripsi Pesanan: ${description}%0A%0A` +
+                    `sekian dan terima kasih!!`;
 
     const waNumber = "6283151727739";
     const url = `https://wa.me/${waNumber}?text=${message}`;
@@ -32,27 +32,29 @@ const LandingPage = () => {
     setDescription("");
   };
 
+  // Fungsi kirim email saat checkbox dicentang
   const handleCheckboxChange = (e) => {
     const checked = e.target.checked;
     setIsReviewed(checked);
 
     if (checked) {
-      emailjs
-        .send(
-          "service_jn640ao",
-          "template_wfqj14o",
-          {
-            message: "Website Gercep Laundry sudah direview oleh dosen.",
-          },
-          "A2R7VdMHewMxALxYU"
-        )
-        .then(() => {
-          alert("✅ Email berhasil dikirim ke Ricardo!");
-        })
-        .catch((error) => {
-          console.error("❌ Gagal mengirim email:", error);
-          alert("❌ Email gagal dikirim. Coba cek koneksi atau konfigurasi.");
-        });
+      emailjs.send(
+        "service_jn640ao",
+        "template_wfqj14o",
+        {
+          to_name: "Ricardo",
+          message: "Website laundry kamu sudah direview oleh dosen ✅",
+          email_to: "ricardo@email.com", // Ganti ke email kamu
+        },
+        "A2R7VdMHewMxALxYU"
+      ).then(() => {
+        alert("Email berhasil dikirim ke Ricardo!");
+        setIsReviewed(false); // Auto uncheck setelah kirim
+      }).catch((error) => {
+        console.error("Gagal kirim email:", error);
+        alert("Gagal mengirim email.");
+        setIsReviewed(false);
+      });
     }
   };
 
@@ -63,14 +65,13 @@ const LandingPage = () => {
           Login
         </button>
         <div className="hero-content">
-          <h1>
-            Welcome to <span>G</span>ercep <span>L</span>aundry
-          </h1>
+          <h1>Welcome to <span>G</span>ercep <span>L</span>aundry</h1>
           <p>Atasi masalah pakaian kotor anda</p>
           <p>dengan kami disini!</p>
         </div>
       </div>
 
+      {/* About Us */}
       <div className="container-2" id="about">
         <h2 className="about-title">About Us</h2>
         <div className="card-container-2">
@@ -107,6 +108,7 @@ const LandingPage = () => {
         </div>
       </div>
 
+      {/* Buat Pesanan */}
       <div className="container-3" id="contact">
         <h2 className="contact-title">Buat Pesanan antar jemput</h2>
         <div className="card-container-3">
@@ -142,31 +144,32 @@ const LandingPage = () => {
                   placeholder="cth : cuci kering 1 hari (silahkan lihat gambar di samping untuk melihat layanan)"
                 ></textarea>
 
-                <button type="submit" className="submit-btn">
+                <button type="submit" className="submit-btn" target="_blank">
                   Kirim Pesanan
                 </button>
-
-                <div style={{ marginTop: "1rem" }}>
-                  <label>
-                    <input
-                      type="checkbox"
-                      checked={isReviewed}
-                      onChange={handleCheckboxChange}
-                    />{" "}
-                    Website ini sudah direview oleh dosen
-                  </label>
-                </div>
               </form>
             </div>
 
+            {/* Gambar */}
             <div className="card-image-contact"></div>
           </div>
         </div>
-        <span>
-          catatan : berat minimal 3Kg jika kurang akan di bulatkan menjadi 3Kg
-        </span>
+        <span>catatan : berat minimal 3Kg jika kurang akan di bulatkan menjadi 3Kg</span>
       </div>
 
+      {/* ✅ Checkbox review dosen */}
+      <div style={{ marginTop: "20px", textAlign: "center" }}>
+        <label>
+          <input
+            type="checkbox"
+            checked={isReviewed}
+            onChange={handleCheckboxChange}
+          />
+          Website ini sudah direview oleh dosen
+        </label>
+      </div>
+
+      {/* Footer */}
       <div className="footer-bottom">
         <p>
           Copyright 2023 © All Right Reserved Design by RicardoCandraSUlebaganti
